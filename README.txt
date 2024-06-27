@@ -1,3 +1,5 @@
 catkin_ws ROS上层算法程序
 Controller stm32底层驱动程序
+实物运行程序与gazebo仿真程序都有
 开发环境 ubantu20.04 ros-noetic stm32f407-freertos
+如定位使用cartographer，则需自行下载cartographer包
