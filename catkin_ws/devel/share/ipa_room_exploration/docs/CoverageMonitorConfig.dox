@@ -1,0 +1,12 @@
+\subsubsection parameters ROS parameters
+
+Reads and maintains the following parameters on the ROS server
+
+- \b "~map_frame" : \b [str] Name of the map coordinate system. min: , default: map, max: 
+- \b "~robot_frame" : \b [str] Name of the robot coordinate system. min: , default: base_link, max: 
+- \b "~coverage_radius" : \b [double] Radius of the circular coverage device, in [m]. min: 0.001, default: 0.25, max: 100000.0
+- \b "~coverage_circle_offset_transform_x" : \b [double] The offset of the coverage circle from the robot center, [x,y,z] in [m]. min: -100000.0, default: 0.29035, max: 100000.0
+- \b "~coverage_circle_offset_transform_y" : \b [double] The offset of the coverage circle from the robot center, [x,y,z] in [m]. min: -100000.0, default: -0.114, max: 100000.0
+- \b "~coverage_circle_offset_transform_z" : \b [double] The offset of the coverage circle from the robot center, [x,y,z] in [m]. min: -100000.0, default: 0.0, max: 100000.0
+- \b "~robot_trajectory_recording_active" : \b [bool] The robot trajectory is only recorded if this flag is true. min: False, default: False, max: True
+

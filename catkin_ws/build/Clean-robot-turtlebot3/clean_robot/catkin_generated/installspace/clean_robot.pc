@@ -1,0 +1,8 @@
+prefix=/home/hp/catkin_ws/install
+
+Name: clean_robot
+Description: Description of clean_robot
+Version: 0.0.0
+Cflags: -I${prefix}/include
+Libs: -L${prefix}/lib -lclean_robot
+Requires: actionlib costmap_2d geometry_msgs move_base_msgs nav_msgs roscpp tf

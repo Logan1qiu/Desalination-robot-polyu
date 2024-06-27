@@ -1,0 +1,36 @@
+<launch>
+    <!--- Run move_base -->
+    <node pkg="move_base" type="move_base" name="move_base">
+        <rosparam file="$(find wpb_home_tutorials)/nav_lidar/costmap_common_params.yaml" command="load" ns="global_costmap" />
+        <rosparam file="$(find wpb_home_tutorials)/nav_lidar/costmap_common_params.yaml" command="load" ns="local_costmap" />
+        <rosparam file="$(find wpb_home_tutorials)/nav_lidar/global_costmap_params.yaml" command="load" />
+        <rosparam file="$(find wpb_home_tutorials)/nav_lidar/local_costmap_params.yaml" command="load" />
+        <param name="base_global_planner" value="global_planner/GlobalPlanner" /> 
+        <param name="use_dijkstra" value="true"/>
+        <param name="base_local_planner" value="dwa_local_planner/DWAPlannerROS" />
+        <!-- <param name="base_local_planner" value="teb_local_planner/TebPlannerROS" /> -->
+        <rosparam file="$(find clean_robot)/param/move_base_params.yaml" command="load" />
+        <rosparam file="$(find clean_robot)/param/dwa_local_planner_params_desalination.yaml" command="load" />
+        <!-- <rosparam file="$(find clean_robot)/param/teb_local_planner_params_desalination.yaml" command="load" /> -->
+        <!-- <param name="base_local_planner" value="wpbh_local_planner/WpbhLocalPlanner" /> -->
+    </node>
+
+    <!-- 清扫路径规划器 -->
+    <node pkg="clean_robot" type="path_planning_node" respawn="false" name="path_planning_node" output="screen" clear_params="true">
+        <rosparam file="$(find clean_robot)/config/costmap_common_params.yaml" command="load" ns="cleaning_costmap" />
+        <rosparam file="$(find clean_robot)/config/cleaning_costmap_params.yaml" command="load" />
+    </node>
+    <!-- 根据清扫的路径向导航系统发送目标点位 -->
+    <!-- 设定距离当前目标点多进时候发布下一个目标点 -->
+        <param name="/NextGoal/tolerance_goal" value="2.5" />
+    <node pkg="clean_robot" type="next_goal" respawn="true" name="next_goal" output="screen" />
+
+    <!-- Run map server -->
+    <node pkg="map_server" type="map_server" name="map_server" args="$(find mrobot_drive)/maps/cleanworld.yaml"/>
+
+    <!--- Run AMCL -->
+    <node pkg="amcl" type="amcl" name="amcl"/>
+
+    <!--- Run rviz -->
+    <node name="rviz" pkg="rviz" type="rviz" args="-d $(find clean_robot)/rviz/turtlebot3_navigation.rviz"/>
+</launch>

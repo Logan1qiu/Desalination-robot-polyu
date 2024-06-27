@@ -1,0 +1,15 @@
+\subsubsection usage Usage
+\verbatim
+<node name="room_sequence_planning_action_server" pkg="ipa_building_navigation" type="room_sequence_planning_action_server">
+  <param name="tsp_solver" type="int" value="3" />
+  <param name="problem_setting" type="int" value="2" />
+  <param name="planning_method" type="int" value="2" />
+  <param name="max_clique_path_length" type="double" value="12.0" />
+  <param name="maximum_clique_size" type="int" value="9001" />
+  <param name="map_downsampling_factor" type="double" value="0.25" />
+  <param name="check_accessibility_of_rooms" type="bool" value="True" />
+  <param name="return_sequence_map" type="bool" value="False" />
+  <param name="display_map" type="bool" value="False" />
+</node>
+\endverbatim
+

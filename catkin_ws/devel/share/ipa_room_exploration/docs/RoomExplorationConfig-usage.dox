@@ -1,0 +1,37 @@
+\subsubsection usage Usage
+\verbatim
+<node name="ipa_room_exploration_action_server" pkg="ipa_room_exploration" type="ipa_room_exploration_action_server">
+  <param name="room_exploration_algorithm" type="int" value="2" />
+  <param name="map_correction_closing_neighborhood_size" type="int" value="2" />
+  <param name="return_path" type="bool" value="True" />
+  <param name="execute_path" type="bool" value="False" />
+  <param name="goal_eps" type="double" value="2.0" />
+  <param name="use_dyn_goal_eps" type="bool" value="False" />
+  <param name="interrupt_navigation_publishing" type="bool" value="False" />
+  <param name="revisit_areas" type="bool" value="True" />
+  <param name="left_sections_min_area" type="double" value="0.01" />
+  <param name="global_costmap_topic" type="str" value="/move_base/global_costmap/costmap" />
+  <param name="coverage_check_service_name" type="str" value="/room_exploration/coverage_check_server/coverage_check" />
+  <param name="map_frame" type="str" value="map" />
+  <param name="camera_frame" type="str" value="base_link" />
+  <param name="tsp_solver" type="int" value="3" />
+  <param name="tsp_solver_timeout" type="int" value="600" />
+  <param name="min_cell_area" type="double" value="10.0" />
+  <param name="path_eps" type="double" value="2.0" />
+  <param name="grid_obstacle_offset" type="double" value="0.0" />
+  <param name="max_deviation_from_track" type="int" value="-1" />
+  <param name="cell_visiting_order" type="int" value="1" />
+  <param name="step_size" type="double" value="0.008" />
+  <param name="A" type="int" value="17" />
+  <param name="B" type="int" value="5" />
+  <param name="D" type="int" value="7" />
+  <param name="E" type="int" value="80" />
+  <param name="mu" type="double" value="1.03" />
+  <param name="delta_theta_weight" type="double" value="0.15" />
+  <param name="cell_size" type="int" value="0" />
+  <param name="delta_theta" type="double" value="1.570796" />
+  <param name="curvature_factor" type="double" value="1.1" />
+  <param name="max_distance_factor" type="double" value="1.0" />
+</node>
+\endverbatim
+

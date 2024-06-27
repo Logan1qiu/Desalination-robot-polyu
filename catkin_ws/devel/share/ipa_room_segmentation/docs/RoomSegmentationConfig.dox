@@ -1,0 +1,28 @@
+\subsubsection parameters ROS parameters
+
+Reads and maintains the following parameters on the ROS server
+
+- \b "~room_segmentation_algorithm" : \b [int] Segmentation method min: 1, default: 3, max: 99
+- \b "~display_segmented_map" : \b [bool] Show the resulting segmented map directly min: False, default: False, max: True
+- \b "~publish_segmented_map" : \b [bool] Publish the resulting segmented map as grid map min: False, default: False, max: True
+- \b "~room_area_factor_upper_limit_morphological" : \b [double] Upper room limit for morphological segmentation min: 0.0, default: 47.0, max: std::numeric_limits<double>::infinity()
+- \b "~room_area_factor_lower_limit_morphological" : \b [double] Lower room limit for morphological segmentation min: 0.0, default: 0.8, max: std::numeric_limits<double>::infinity()
+- \b "~room_area_factor_upper_limit_distance" : \b [double] Upper room limit for distance segmentation min: 0.0, default: 163.0, max: std::numeric_limits<double>::infinity()
+- \b "~room_area_factor_lower_limit_distance" : \b [double] Lower room limit for distance segmentation min: 0.0, default: 0.35, max: std::numeric_limits<double>::infinity()
+- \b "~room_area_factor_upper_limit_voronoi" : \b [double] Upper room limit for Voronoi segmentation min: 0.0, default: 1000000.0, max: std::numeric_limits<double>::infinity()
+- \b "~room_area_factor_lower_limit_voronoi" : \b [double] Lower room limit for Voronoi segmentation min: 0.0, default: 0.1, max: std::numeric_limits<double>::infinity()
+- \b "~room_area_factor_upper_limit_semantic" : \b [double] Upper room limit for semantic/feature-based segmentation min: 0.0, default: 1000000.0, max: std::numeric_limits<double>::infinity()
+- \b "~room_area_factor_lower_limit_semantic" : \b [double] Lower room limit for semantic/feature-based segmentation min: 0.0, default: 1.0, max: std::numeric_limits<double>::infinity()
+- \b "~room_area_upper_limit_voronoi_random" : \b [double] Upper room limit for Voronoi-random-field segmentation min: 0.0, default: 1000000.0, max: std::numeric_limits<double>::infinity()
+- \b "~room_area_lower_limit_voronoi_random" : \b [double] Lower room limit for Voronoi-random-field segmentation min: 0.0, default: 1.53, max: std::numeric_limits<double>::infinity()
+- \b "~room_area_upper_limit_passthrough" : \b [double] Upper room limit for Voronoi-random-field segmentation min: 0.0, default: 1000000.0, max: std::numeric_limits<double>::infinity()
+- \b "~room_area_lower_limit_passthrough" : \b [double] Lower room limit for Voronoi-random-field segmentation min: 0.0, default: 1.0, max: std::numeric_limits<double>::infinity()
+- \b "~voronoi_neighborhood_index" : \b [int] Size of neighborhood on graph for Voronoi segmentation, larger value sets a larger neighborhood for searching critical points min: 0, default: 280, max: 2147483647
+- \b "~max_iterations" : \b [int] Max number of Iterations for search of neighbors, also used for the vrf segmentation min: 0, default: 150, max: 2147483647
+- \b "~min_critical_point_distance_factor" : \b [double] Minimal distance factor between two critical points before one of it gets eliminated min: 0.0, default: 0.5, max: std::numeric_limits<double>::infinity()
+- \b "~max_area_for_merging" : \b [double] Maximal area [m^2] of a room that should be merged with its surrounding rooms, also used for the voronoi random field segmentation min: 0.0, default: 12.5, max: std::numeric_limits<double>::infinity()
+- \b "~voronoi_random_field_epsilon_for_neighborhood" : \b [int] Larger value sets larger neighborhood, concentrated in a node of the conditional random field min: 0, default: 5, max: 2147483647
+- \b "~min_neighborhood_size" : \b [int] Min. size of the above mentioned neighborhood min: 0, default: 4, max: 2147483647
+- \b "~min_voronoi_random_field_node_distance" : \b [double] Min distance the base nodes for each crf node need to be apart min: 0.0, default: 7.0, max: std::numeric_limits<double>::infinity()
+- \b "~max_voronoi_random_field_inference_iterations" : \b [int] Max number of iterations the inference algorithm should do min: 0, default: 9000, max: 2147483647
+

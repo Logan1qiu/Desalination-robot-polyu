@@ -1,0 +1,16 @@
+(cl:in-package ipa_building_msgs-msg)
+(cl:export '(INPUT_MAP-VAL
+          INPUT_MAP
+          MAP_RESOLUTION-VAL
+          MAP_RESOLUTION
+          MAP_ORIGIN-VAL
+          MAP_ORIGIN
+          RETURN_FORMAT_IN_PIXEL-VAL
+          RETURN_FORMAT_IN_PIXEL
+          RETURN_FORMAT_IN_METER-VAL
+          RETURN_FORMAT_IN_METER
+          ROBOT_RADIUS-VAL
+          ROBOT_RADIUS
+          ROOM_SEGMENTATION_ALGORITHM-VAL
+          ROOM_SEGMENTATION_ALGORITHM
+))

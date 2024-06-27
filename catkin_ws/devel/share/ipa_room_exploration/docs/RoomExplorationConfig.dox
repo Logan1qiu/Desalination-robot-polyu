@@ -1,0 +1,36 @@
+\subsubsection parameters ROS parameters
+
+Reads and maintains the following parameters on the ROS server
+
+- \b "~room_exploration_algorithm" : \b [int] Exploration method min: 1, default: 2, max: 8
+- \b "~map_correction_closing_neighborhood_size" : \b [int] Applies a closing operation to neglect inaccessible areas and map errors/artifacts if the map_correction_closing_neighborhood_size parameter is larger than 0. The parameter then specifies the iterations (or neighborhood size) of that closing operation.. min: -1, default: 2, max: 100
+- \b "~return_path" : \b [bool] Boolean used to determine whether the server should return the computed coverage path in the response message. min: False, default: True, max: True
+- \b "~execute_path" : \b [bool] Boolean used to determine whether the server should navigate the robot along the computed coverage path. min: False, default: False, max: True
+- \b "~goal_eps" : \b [double] Distance from robot to published goal to publish the next goal in the path. min: 1.0, default: 2.0, max: std::numeric_limits<double>::infinity()
+- \b "~use_dyn_goal_eps" : \b [bool] Use a dynamic goal distance criterion: the larger the path's curvature, the more accurate the navigation. min: False, default: False, max: True
+- \b "~interrupt_navigation_publishing" : \b [bool] Interrupt the publishing of navigation goals as long as needed. min: False, default: False, max: True
+- \b "~revisit_areas" : \b [bool] Revisiting not seen areas due to dynamic obstacles on/off. min: False, default: True, max: True
+- \b "~left_sections_min_area" : \b [double] Minimal size of left sections to revisit them after one go [m^2]. min: 1e-07, default: 0.01, max: std::numeric_limits<double>::infinity()
+- \b "~global_costmap_topic" : \b [str] The name of the global costmap topic. min: , default: /move_base/global_costmap/costmap, max: 
+- \b "~coverage_check_service_name" : \b [str] The name of the service to call for a coverage check of the driven trajectory. min: , default: /room_exploration/coverage_check_server/coverage_check, max: 
+- \b "~map_frame" : \b [str] The name of the map frame, used for tracking of the robot. min: , default: map, max: 
+- \b "~camera_frame" : \b [str] The name of the camera frame, that is in the same kinematic chain as the map_frame and shows the camera pose. min: , default: base_link, max: 
+- \b "~tsp_solver" : \b [int] Exploration method min: 1, default: 3, max: 3
+- \b "~tsp_solver_timeout" : \b [int] A sophisticated solver like Concorde or Genetic can be interrupted if it does not find a solution within this time (in [s]), and then falls back to the nearest neighbor solver. min: 1, default: 600, max: 2147483647
+- \b "~min_cell_area" : \b [double] Minimum area of one cell for the boustrophedon explorator. min: 1e-07, default: 10.0, max: std::numeric_limits<double>::infinity()
+- \b "~path_eps" : \b [double] Minimal distance between two points on the generated path [pixel]. min: 0.0, default: 2.0, max: std::numeric_limits<double>::infinity()
+- \b "~grid_obstacle_offset" : \b [double] Allows to displace the grid by more than the standard half_grid_size from obstacles [m]. min: 0.0, default: 0.0, max: std::numeric_limits<double>::infinity()
+- \b "~max_deviation_from_track" : \b [int] Maximal allowed shift off the ideal boustrophedon track for avoiding obstacles on track, in [pixel]. For negative values max_deviation_from_track is automatically set to grid_spacing. min: -1, default: -1, max: 2147483647
+- \b "~cell_visiting_order" : \b [int] Cell visiting order method min: 1, default: 1, max: 2
+- \b "~step_size" : \b [double] Step size for integrating the state dynamics of the neural network. min: 0.0001, default: 0.008, max: 1.0
+- \b "~A" : \b [int] Decaying parameter that pulls the activity of a neuron closer to zero, larger value means faster decreasing. min: 1, default: 17, max: 2147483647
+- \b "~B" : \b [int] Increasing parameter that tries to increase the activity of a neuron, higher value means a higher desired value and a faster increasing at the beginning. min: 1, default: 5, max: 2147483647
+- \b "~D" : \b [int] Decreasing parameter when the neuron is labeled as obstacle, higher value means faster decreasing. min: 1, default: 7, max: 2147483647
+- \b "~E" : \b [int] External input parameter of one neuron that is used in the dynamics corresponding to if it is an obstacle or uncleaned/cleaned, E>>B. min: 1, default: 80, max: 2147483647
+- \b "~mu" : \b [double] Parameter to set the importance of the states of neighboring neurons to the dynamics, higher value means higher influence. min: 0.001, default: 1.03, max: std::numeric_limits<double>::infinity()
+- \b "~delta_theta_weight" : \b [double] Parameter to set the importance of the traveleing direction from the previous step and the next step, a higher value means that the robot should turn less. min: 0.0, default: 0.15, max: std::numeric_limits<double>::infinity()
+- \b "~cell_size" : \b [int] Side length of one grid cell, when discretizing the free space. min: -1, default: 0, max: 2147483647
+- \b "~delta_theta" : \b [double] Sampling angle when creating possible sensing poses. min: 0.0001, default: 1.570796, max: std::numeric_limits<double>::infinity()
+- \b "~curvature_factor" : \b [double] Factor an arc can be longer than a straight arc. min: 1.0, default: 1.1, max: std::numeric_limits<double>::infinity()
+- \b "~max_distance_factor" : \b [double] #Factor, an arc can be longer than the maximal distance of the room. min: 1.0, default: 1.0, max: std::numeric_limits<double>::infinity()
+

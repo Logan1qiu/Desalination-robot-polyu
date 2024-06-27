@@ -1,0 +1,14 @@
+\subsubsection parameters ROS parameters
+
+Reads and maintains the following parameters on the ROS server
+
+- \b "~tsp_solver" : \b [int] TSP solver min: 1, default: 3, max: 3
+- \b "~problem_setting" : \b [int] Problem setting of the sequence planning problem min: 1, default: 2, max: 2
+- \b "~planning_method" : \b [int] Trolley placement method (only applies to CheckpointBasedPlanning problem) min: 1, default: 2, max: 2
+- \b "~max_clique_path_length" : \b [double] Max A* path length between two rooms that are assigned to the same clique, in [m] (only applies to CheckpointBasedPlanning problem) min: 0.0, default: 12.0, max: std::numeric_limits<double>::infinity()
+- \b "~maximum_clique_size" : \b [int] Maximal number of nodes belonging to one trolley clique (only applies to CheckpointBasedPlanning problem) min: 0, default: 9001, max: 2147483647
+- \b "~map_downsampling_factor" : \b [double] The map may be downsampled during computations (e.g. of A* path lengths) in order to speed up the algorithm, if set to 1 the map will have original size, if set to 0 the algorithm won't work min: 1e-05, default: 0.25, max: 1.0
+- \b "~check_accessibility_of_rooms" : \b [bool] Tells the sequence planner if it should check the given room centers for accessibility from the starting position min: False, default: True, max: True
+- \b "~return_sequence_map" : \b [bool] Tells the server if the map with the sequence drawn in should be returned min: False, default: False, max: True
+- \b "~display_map" : \b [bool] Show the resulting map with paths (only if return_sequence_map=true) min: False, default: False, max: True
+

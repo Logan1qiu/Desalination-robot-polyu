@@ -1,0 +1,56 @@
+<launch>
+    <!--- Run move_base -->
+    <arg name="cmd_vel_topic" default="/cmd_vel" />
+    <arg name="odom_topic" default="/odom" />
+    <arg name="move_forward_only" default="false"/>
+    <node pkg="move_base" type="move_base" name="move_base">
+        <rosparam file="$(find mrobot_drive)/param/costmap_common_params.yaml" command="load" ns="global_costmap" />
+        <rosparam file="$(find mrobot_drive)/param/costmap_common_params.yaml" command="load" ns="local_costmap" />
+        <rosparam file="$(find mrobot_drive)/param/global_costmap_params.yaml" command="load" />
+        <rosparam file="$(find mrobot_drive)/param/local_costmap_params.yaml" command="load" />
+        <param name="base_global_planner" value="global_planner/GlobalPlanner" /> 
+        <param name="use_dijkstra" value="true"/>
+        <param name="base_local_planner" value="teb_local_planner/TebLocalPlannerROS" />
+        <rosparam file="$(find mrobot_drive)/param/move_base_params.yaml" command="load" />
+        <rosparam file="$(find mrobot_drive)/param/teb_local_planner_params_desalination.yaml" command="load" />
+    </node>
+
+    <!-- 清扫路径规划器 -->
+    <node pkg="clean_robot" type="path_planning_node" respawn="false" name="path_planning_node" output="screen" clear_params="true">
+        <rosparam file="$(find clean_robot)/config/costmap_common_params.yaml" command="load" ns="cleaning_costmap" />
+        <rosparam file="$(find clean_robot)/config/cleaning_costmap_params.yaml" command="load" />
+    </node>
+    <!-- 根据清扫的路径向导航系统发送目标点位 -->
+    <!-- 设定距离当前目标点多进时候发布下一个目标点 -->
+        <param name="/NextGoal/tolerance_goal" value="1.5" />
+    <node pkg="clean_robot" type="next_goal" respawn="true" name="next_goal" output="screen" />
+
+    <!-- Run map server -->
+    <arg name="map_file" default="$(find mrobot_drive)/maps/cleanworld.yaml"/>
+    <node pkg="map_server" type="map_server" name="map_server" args="$(arg map_file)"/>
+
+
+
+    <!-- Run carto location -->
+    <arg name="configuration_basename" default="turtlebot3_lds_2d_realworld2d_purelocation_demo.lua"/>
+    <!-- <arg name="configuration_basename" default="turtlebot3_lds_2d_realworld2d_purelocation.lua"/> -->
+    <arg name="load_state_filename" default="/$(find mrobot_drive)/maps/cleanworld.pbstream"/>
+    <node pkg="cartographer_ros" type="cartographer_node" name="cartographer_node" 
+        args="-configuration_directory $(find mrobot_drive)/config
+              -configuration_basename $(arg configuration_basename)
+              -load_state_filename $(arg load_state_filename)"
+        output="screen">
+    <!--remap from="/imu" to="/flat_imu"/-->
+    <!-- <remap from="scan" to="/MS200/scan"/> -->
+    <!--remap from="points2" to="/camera/depth/points" /-->
+    <!-- <remap from="imu" to="imu/data" /> -->
+    </node>
+
+    <!-- cartographer_occupancy_grid_node -->
+    <node pkg="cartographer_ros" type="cartographer_occupancy_grid_node"
+        name="cartographer_occupancy_grid_node"
+        args="-resolution 0.05" />
+
+    <!--- Run rviz -->
+    <node name="rviz" pkg="rviz" type="rviz" args="-d $(find clean_robot)/rviz/turtlebot3_navigation.rviz"/>
+</launch>

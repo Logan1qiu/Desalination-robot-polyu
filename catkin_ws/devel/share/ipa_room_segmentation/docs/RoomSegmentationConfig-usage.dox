@@ -1,0 +1,29 @@
+\subsubsection usage Usage
+\verbatim
+<node name="room_segmentation_server" pkg="ipa_room_segmentation" type="room_segmentation_server">
+  <param name="room_segmentation_algorithm" type="int" value="3" />
+  <param name="display_segmented_map" type="bool" value="False" />
+  <param name="publish_segmented_map" type="bool" value="False" />
+  <param name="room_area_factor_upper_limit_morphological" type="double" value="47.0" />
+  <param name="room_area_factor_lower_limit_morphological" type="double" value="0.8" />
+  <param name="room_area_factor_upper_limit_distance" type="double" value="163.0" />
+  <param name="room_area_factor_lower_limit_distance" type="double" value="0.35" />
+  <param name="room_area_factor_upper_limit_voronoi" type="double" value="1000000.0" />
+  <param name="room_area_factor_lower_limit_voronoi" type="double" value="0.1" />
+  <param name="room_area_factor_upper_limit_semantic" type="double" value="1000000.0" />
+  <param name="room_area_factor_lower_limit_semantic" type="double" value="1.0" />
+  <param name="room_area_upper_limit_voronoi_random" type="double" value="1000000.0" />
+  <param name="room_area_lower_limit_voronoi_random" type="double" value="1.53" />
+  <param name="room_area_upper_limit_passthrough" type="double" value="1000000.0" />
+  <param name="room_area_lower_limit_passthrough" type="double" value="1.0" />
+  <param name="voronoi_neighborhood_index" type="int" value="280" />
+  <param name="max_iterations" type="int" value="150" />
+  <param name="min_critical_point_distance_factor" type="double" value="0.5" />
+  <param name="max_area_for_merging" type="double" value="12.5" />
+  <param name="voronoi_random_field_epsilon_for_neighborhood" type="int" value="5" />
+  <param name="min_neighborhood_size" type="int" value="4" />
+  <param name="min_voronoi_random_field_node_distance" type="double" value="7.0" />
+  <param name="max_voronoi_random_field_inference_iterations" type="int" value="9000" />
+</node>
+\endverbatim
+

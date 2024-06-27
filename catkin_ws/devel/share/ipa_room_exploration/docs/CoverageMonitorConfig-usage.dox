@@ -1,0 +1,13 @@
+\subsubsection usage Usage
+\verbatim
+<node name="coverage_monitor_server" pkg="ipa_room_exploration" type="coverage_monitor_server">
+  <param name="map_frame" type="str" value="map" />
+  <param name="robot_frame" type="str" value="base_link" />
+  <param name="coverage_radius" type="double" value="0.25" />
+  <param name="coverage_circle_offset_transform_x" type="double" value="0.29035" />
+  <param name="coverage_circle_offset_transform_y" type="double" value="-0.114" />
+  <param name="coverage_circle_offset_transform_z" type="double" value="0.0" />
+  <param name="robot_trajectory_recording_active" type="bool" value="False" />
+</node>
+\endverbatim
+

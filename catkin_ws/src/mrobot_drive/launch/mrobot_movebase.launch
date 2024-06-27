@@ -1,0 +1,18 @@
+<launch>
+    <!-- Run map server -->
+    <node pkg="map_server" type="map_server" name="map_server" args="$(find mrobot_drive)/maps/pole.yaml"/>
+
+    <!--- Run move_base -->
+    <node pkg="move_base" type="move_base" name="move_base">
+        <rosparam file="$(find wpb_home_tutorials)/nav_lidar/costmap_common_params.yaml" command="load" ns="global_costmap" />
+        <rosparam file="$(find wpb_home_tutorials)/nav_lidar/costmap_common_params.yaml" command="load" ns="local_costmap" />
+        <rosparam file="$(find wpb_home_tutorials)/nav_lidar/global_costmap_params.yaml" command="load" />
+        <rosparam file="$(find wpb_home_tutorials)/nav_lidar/local_costmap_params.yaml" command="load" />
+        <param name="base_global_planner" value="global_planner/GlobalPlanner" /> 
+        <param name="base_local_planner" value="dwa_local_planner/DWAPlannerROS" />
+    </node>
+
+    <!--- Run AMCL -->
+    <node pkg="amcl" type="amcl" name="amcl"/>
+
+</launch>

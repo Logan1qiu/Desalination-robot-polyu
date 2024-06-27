@@ -1,0 +1,27 @@
+{
+  "configurations": [
+    {
+      "browse": {
+        "databaseFilename": "${default}",
+        "limitSymbolsToIncludedHeaders": false
+      },
+      "includePath": [
+        "/home/hp/catkin_ws/devel/include/**",
+        "/home/hp/cartographer_ws/install_isolated/include/**",
+        "/home/hp/logan/devel/include/**",
+        "/opt/ros/noetic/include/**",
+        "/home/hp/catkin_ws/src/mrobot_drive/include/**",
+        "/home/hp/catkin_ws/src/robot_pose_ekf/include/**",
+        "/home/hp/logan/src/turn_on_wheeltec_robot/include/**",
+        "/home/hp/logan/src/wheeltec_multi/include/**",
+        "/usr/include/**"
+      ],
+      "name": "ROS",
+      "intelliSenseMode": "gcc-x64",
+      "compilerPath": "/usr/bin/gcc",
+      "cStandard": "gnu11",
+      "cppStandard": "c++14"
+    }
+  ],
+  "version": 4
+}
