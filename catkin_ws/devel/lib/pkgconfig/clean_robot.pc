@@ -1,8 +1,0 @@
-prefix=/home/hp/catkin_ws/devel
-
-Name: clean_robot
-Description: Description of clean_robot
-Version: 0.0.0
-Cflags: -I/home/hp/catkin_ws/src/Clean-robot-turtlebot3/clean_robot/include
-Libs: -L${prefix}/lib -lclean_robot
-Requires: actionlib costmap_2d geometry_msgs move_base_msgs nav_msgs roscpp tf

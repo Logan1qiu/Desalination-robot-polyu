@@ -1,8 +1,0 @@
-prefix=/home/hp/catkin_ws/devel
-
-Name: wpb_home_behaviors
-Description: Description of wpb_home_behaviors
-Version: 0.1.0
-Cflags: -I/home/hp/catkin_ws/devel/include
-Libs: -L${prefix}/lib 
-Requires: roscpp std_msgs message_runtime

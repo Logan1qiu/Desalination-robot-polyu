@@ -1,8 +1,0 @@
-prefix=/home/hp/catkin_ws/devel
-
-Name: mbot_navigation
-Description: Description of mbot_navigation
-Version: 0.0.0
-Cflags: 
-Libs: -L${prefix}/lib 
-Requires: 

@@ -1,8 +1,0 @@
-prefix=/home/hp/catkin_ws/install
-
-Name: wpb_home_python
-Description: Description of wpb_home_python
-Version: 0.0.0
-Cflags: 
-Libs: -L${prefix}/lib 
-Requires: 
