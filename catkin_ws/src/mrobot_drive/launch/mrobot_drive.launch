@@ -1,0 +1,39 @@
+<launch>
+    <node pkg="mrobot_drive"  type="mrobot_drive_node"  name="mrobot_drive_node"  output="screen">
+      <param name="usart_port_name" type="string" value="/dev/ttyUSB0" />
+      <param name="serial_baud_rate" type="int" value = "9600" />
+      <param name="ifSend" type="bool" value = "false" />
+      <!-- <remap from = "/odom" to = "odom"/> -->
+    </node>
+
+    
+    <node pkg="oradar_lidar" type="oradar_scan" name="oradar_scan" output="screen">
+
+      <param name="device_model" type="string"   value="MS200"/>				<!--设备型号: MS200-->
+      <param name="frame_id"     type="string"   value="laser"/>  <!--配置frame_id-->
+      <param name="scan_topic"   type="string"   value="scan" />  <!--设置激光雷达的topic名称--> 
+      <param name="port_name"    type="string"   value="/dev/ttyCH343USB0"/> <!--配置串口设备port: dev/ttyUSB0-->
+      <param name="baudrate"     type="int"      value="230400"/>		    <!--配置串口波特率:230400-->
+      <param name="angle_min"    type="double"   value="0.00" /> 	  <!--设置最小角度，单位度.取值范围[0,360].default=0.0-->
+      <param name="angle_max"    type="double"   value="360.00"/>   	  <!--设置最大角度，单位度.取值范围[0,360].default=360.0-->
+      <param name="range_min"    type="double"   value="0.05" />    	  <!--设置最小距离，单位米，default=0.05-->
+      <param name="range_max"    type="double"   value="20.0" />    	  <!--设置最大距离，单位米，default=20.0-->
+      <param name="clockwise"    type="bool"     value="false"/>    	  <!--配置点云方向，true为顺时针， false为逆时针-->
+      <param name="motor_speed"  type="int"      value="10" />      	  <!--配置motor转速.default=10Hz, 取值范围5~15Hz-->
+  
+    </node>
+
+    <arg name="model" default="$(find mrobot_drive)/models/desalination.model"/>
+    <param name="robot_description" command="$(find xacro)/xacro $(arg model)" />
+    <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher" />
+    <node name="joint_state_publisher" pkg="joint_state_publisher" type="joint_state_publisher" />
+
+    <!-- <node
+        pkg="mrobot_drive"
+        type="mrobot_tf_node"
+        name="mrobot_tf_node"  
+        output="screen"
+    /> -->
+
+
+</launch>

@@ -1,0 +1,13 @@
+{
+    "python.autoComplete.extraPaths": [
+        "/home/hp/catkin_ws/devel/lib/python3/dist-packages",
+        "/home/hp/logan/devel/lib/python3/dist-packages",
+        "/opt/ros/noetic/lib/python3/dist-packages"
+    ],
+    "python.analysis.extraPaths": [
+        "/home/hp/catkin_ws/devel/lib/python3/dist-packages",
+        "/home/hp/logan/devel/lib/python3/dist-packages",
+        "/opt/ros/noetic/lib/python3/dist-packages"
+    ],
+    "C_Cpp.dimInactiveRegions": false
+}
