@@ -1,7 +1,0 @@
-image: barandwall.pgm
-resolution: 0.050000
-origin: [-5.622489, -5.492969, 0.000000]
-negate: 0
-occupied_thresh: 0.65
-free_thresh: 0.196
-
