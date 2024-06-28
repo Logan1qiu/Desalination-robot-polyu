@@ -1,0 +1,79 @@
+<launch>
+    <!--- Run move_base -->
+    <node pkg="move_base" type="move_base" name="move_base">
+    <!-- <param name="base_local_planner" value="dwa_local_planner/DWAPlannerROS" /> -->
+    <!-- <rosparam file="$(find clean_robot)/param/costmap_common_params_$(arg model).yaml" command="load" ns="global_costmap" />
+    <rosparam file="$(find clean_robot)/param/costmap_common_params_$(arg model).yaml" command="load" ns="local_costmap" />
+    <rosparam file="$(find clean_robot)/param/local_costmap_params.yaml" command="load" />
+    <rosparam file="$(find clean_robot)/param/global_costmap_params.yaml" command="load" /> -->
+        <rosparam file="$(find wpb_home_tutorials)/nav_lidar/costmap_common_params.yaml" command="load" ns="global_costmap" />
+        <rosparam file="$(find wpb_home_tutorials)/nav_lidar/costmap_common_params.yaml" command="load" ns="local_costmap" />
+        <rosparam file="$(find wpb_home_tutorials)/nav_lidar/global_costmap_params.yaml" command="load" />
+        <rosparam file="$(find wpb_home_tutorials)/nav_lidar/local_costmap_params.yaml" command="load" />
+        <param name="base_global_planner" value="global_planner/GlobalPlanner" /> 
+        <param name="use_dijkstra" value="true"/>
+        <param name="base_local_planner" value="dwa_local_planner/DWAPlannerROS" />
+        <!-- <param name="base_local_planner" value="teb_local_planner/TebPlannerROS" /> -->
+        <rosparam file="$(find clean_robot)/param/move_base_params.yaml" command="load" />
+        <rosparam file="$(find clean_robot)/param/dwa_local_planner_params_desalination.yaml" command="load" />
+        <!-- <rosparam file="$(find clean_robot)/param/teb_local_planner_params_desalination.yaml" command="load" /> -->
+        <!-- <param name="base_local_planner" value="wpbh_local_planner/WpbhLocalPlanner" /> -->
+    </node>
+
+    <!-- 清扫路径规划器 -->
+    <node pkg="clean_robot" type="path_planning_node" respawn="false" name="path_planning_node" output="screen" clear_params="true">
+        <rosparam file="$(find clean_robot)/config/costmap_common_params.yaml" command="load" ns="cleaning_costmap" />
+        <rosparam file="$(find clean_robot)/config/cleaning_costmap_params.yaml" command="load" />
+    </node>
+    
+
+    <!-- Run map server -->
+    <node pkg="map_server" type="map_server" name="map_server" args="$(find mrobot_drive)/maps/cleanworld.yaml"/>
+
+    <!--- Run AMCL -->
+    <node pkg="amcl" type="amcl" name="amcl" output="screen">
+    <!-- <remap from="scan" to="udacity_bot/laser/scan"/> -->
+    <!-- <param name="odom_frame_id" value="odom"/> -->
+    <!-- <param name="odom_model_type" value="diff-corrected"/> -->
+    <!-- <param name="base_frame_id" value="robot_footprint"/> -->
+    <!-- <param name="global_frame_id" value="map"/> -->
+    
+    <!--transform tolerance-->
+    <param name="transform_tolerance" value="0.9"/>
+    
+    <!--overall filter-->
+    <param name="min_particles" value="1000"/>
+    <param name="max_particles" value="10000"/>
+    <param name="set_initial_pose" value="False"/>
+    <param name="initial_pose_x" value="0.0"/>
+    <param name="initial_pose_y" value="0.0"/>
+    <param name="updata_min_a" value="0.01"/>
+    <param name="update_min_d" value="0.01"/>
+
+    <param name="initial_cov_xx" value="70"/>
+    <param name="initial_cov_yy" value="50"/>
+    <param name="recovery_alpha_slow" value="0.01"/>
+    <param name="recovery_alpha_fast" value="0.1"/>
+    
+    <!--likelihood_field of laser-->
+    <param name="laser_min_range" value="-1.0"/>
+    <param name="laser_max_range" value="-1.0"/>
+    <param name="laser_max_beams" value="180"/>
+    <param name="laser_z_hit" value="0.95"/>
+    <param name="laser_z_rand" value="0.05"/>
+    <param name="sigma_hit" value="0.05"/>
+    
+    <!--Odometry-->
+    <!-- <param name="odom_model_type" value="diff"/>
+    <param name="odom_alpha1" value="0.2"/>
+    <param name="odom_alpha2" value="0.2"/>
+    <param name="odom_alpha3" value="0.2"/>
+    <param name="odom_alpha4" value="0.2"/> -->
+    
+
+
+  </node>
+
+    <!--- Run rviz -->
+    <node name="rviz" pkg="rviz" type="rviz" args="-d $(find clean_robot)/rviz/turtlebot3_navigation.rviz"/>
+</launch>
